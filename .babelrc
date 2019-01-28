@@ -1,0 +1,23 @@
+{
+  "presets": [
+    ["env", {
+      "targets": {
+        "node": "current"
+      }
+    }],
+  ],
+  "plugins": [
+      ["module-resolver", {
+        "root": ["./src"]
+      }
+    ],
+    [
+      "transform-object-rest-spread",
+      "transform-class-properties",
+      "syntax-dynamic-import",
+      "syntax-object-rest-spread"
+    ]
+  ],
+  "retainLines": true,
+  "sourceMaps": "inline"
+}

@@ -1,0 +1,49 @@
+{
+  "env": {
+    "node": true,
+    "es6": true
+  },
+  "extends": "airbnb",
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "src",
+          "package.json"
+        ]
+      }
+    }
+  },
+  "globals": {
+    "gql": true,
+    "ga": true,
+    "describe": true,
+    "it": true,
+    "test": true,
+    "expect": true,
+    "jest": true,
+    "beforeEach": true,
+    "afterEach": true,
+    "jasmine": true,
+    "beforeAll": true,
+    "afterAll": true,
+    "isNaN": true
+  },
+  "overrides": [
+    {
+      "files": ["*.js"],
+      "rules": {
+        "global-require": "off",
+        "import/prefer-default-export": "off"
+      }
+    }
+  ]
+}
