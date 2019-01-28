@@ -1,0 +1,27 @@
+version: '3.7'
+
+services:
+
+  int-test-example:
+    image: node:10-alpine
+    depends_on:
+      - redis
+    volumes:
+      - .:/opt/app
+    working_dir: /opt/app
+    ports:
+      - 3000:3000
+    user: node
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL}
+      NODE_ENV: development
+    networks:
+      - default
+    command: npm start
+
+  redis:
+    image: redis:4-alpine
+    ports:
+      - 6379:6379
+    networks:
+      - default

@@ -8,7 +8,8 @@
     "lint": "eslint config.js src tests",
     "start": "NODE_ENV=development nodemon --exec babel-node src/bin/int-test-example.js --watch src --watch node_modules --watch config.js",
     "start:production": "node ./dist/bin/int-test-example.js",
-    "test": "echo \"Error: no unit test specified\" && exit 1"
+    "test": "jest --config jest.unit.js --coverage --verbose",
+    "test:integration": "jest --config jest.integration.js --coverage --verbose"
   },
   "repository": {
     "type": "git",
@@ -39,7 +40,7 @@
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.0.0",
     "babel-plugin-module-resolver": "^3.1.3",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-preset-env": "^1.7.0",
     "babel-register": "^6.26.0",
     "eslint": "^5.12.1",

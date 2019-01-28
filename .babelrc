@@ -4,19 +4,13 @@
       "targets": {
         "node": "current"
       }
-    }],
+    }]
   ],
   "plugins": [
-      ["module-resolver", {
-        "root": ["./src"]
-      }
-    ],
-    [
-      "transform-object-rest-spread",
-      "transform-class-properties",
-      "syntax-dynamic-import",
-      "syntax-object-rest-spread"
-    ]
+    ["module-resolver", {
+      "root": ["./src"]
+    }],
+    ["syntax-dynamic-import", {}],
   ],
   "retainLines": true,
   "sourceMaps": "inline"

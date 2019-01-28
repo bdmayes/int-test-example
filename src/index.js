@@ -16,7 +16,7 @@ app.get('/something', async (req, res, next) => {
 
   try {
     const theThing = await getSomething(name);
-    res.send(theThing);
+    res.json(theThing);
   } catch (err) {
     next(err);
   }

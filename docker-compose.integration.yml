@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+
+  int-test-example:
+    image: node:10-alpine
+    depends_on:
+      - redis
+    volumes:
+      - .:/opt/app
+    working_dir: /opt/app
+    user: node
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL}
+    networks:
+      - default
+    command: npm start
+
+  redis:
+    image: redis:4-alpine
+    networks:
+      - default 
+
+  test-integration:
+    image: node:10-alpine
+    depends_on:
+      - redis
+      - int-test-example
+    environment:
+      - NPM_TOKEN=${NPM_TOKEN}
+      - NODE_ENV=test
+    volumes:
+      - .:/opt/app
+    working_dir: /opt/app
+    command: npm run test:integration

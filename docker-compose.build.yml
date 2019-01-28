@@ -1,0 +1,34 @@
+version: '2.1'
+# using 2.1 so that we can use "extends", which was removed in v3
+
+services:
+
+  base:
+    image: node:10-alpine
+    volumes:
+      - .:/opt/app
+    working_dir: /opt/app
+
+  build:
+    extends:
+      service: base
+    command: npm run build
+
+  install:
+    extends:
+      service: base
+    command: npm install
+
+  test:
+    extends:
+      service: base
+    environment:
+      - NODE_ENV=test
+    command: npm run test
+
+  test-integration:
+    extends:
+      service: base
+    environment:
+      - NODE_ENV=test
+    command: npm run test:integration
