@@ -25,6 +25,10 @@ test:
 	LOG_LEVEL=off \
 	docker-compose -f docker-compose.build.yml run --rm test
 
+test-all:
+	LOG_LEVEL=off \
+	docker-compose -f docker-compose.integration.yml run --rm test-all
+
 test-integration:
 	LOG_LEVEL=off \
 	docker-compose -f docker-compose.integration.yml run --rm test-integration

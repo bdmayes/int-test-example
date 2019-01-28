@@ -9,6 +9,7 @@
     "start": "NODE_ENV=development nodemon --exec babel-node src/bin/int-test-example.js --watch src --watch node_modules --watch config.js",
     "start:production": "node ./dist/bin/int-test-example.js",
     "test": "jest --config jest.unit.js --coverage --verbose",
+    "test:all": "jest --config jest.all.js --coverage --verbose",
     "test:integration": "jest --config jest.integration.js --coverage --verbose"
   },
   "repository": {
