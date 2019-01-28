@@ -22,20 +22,38 @@ install-ci: docker-login install
 test-ci: docker-login test-integration
 
 test:
+	COMPOSE_FILE=docker-compose.build.yml \
 	LOG_LEVEL=off \
-	docker-compose -f docker-compose.build.yml run --rm test
+	docker-compose run --rm test
+
+test-debug:
+	COMPOSE_FILE=docker-compose.build.yml \
+	LOG_LEVEL=$(LOG_LEVEL) \
+	docker-compose run --rm test
 
 test-all:
-	LOG_LEVEL=off \
-	docker-compose -f docker-compose.integration.yml run --rm test-all
+	COMPOSE_FILE=docker-compose.integration.yml \
+	LOG_LEVEL= \
+	docker-compose run --rm test-all && \
+	docker-compose down --remove-orphans
+
+test-all-debug:
+	COMPOSE_FILE=docker-compose.integration.yml \
+	LOG_LEVEL=$(LOG_LEVEL) \
+	docker-compose run --rm test-all && \
+	docker-compose down --remove-orphans
 
 test-integration:
-	LOG_LEVEL=off \
-	docker-compose -f docker-compose.integration.yml run --rm test-integration
+	COMPOSE_FILE=docker-compose.integration.yml \
+	LOG_LEVEL= \
+	docker-compose run --rm test-integration && \
+	docker-compose down --remove-orphans
 
 test-integration-debug:
+	COMPOSE_FILE=docker-compose.integration.yml \
 	LOG_LEVEL=$(LOG_LEVEL) \
-	docker-compose -f docker-compose.build.yml run --rm test-integration
+	docker-compose run --rm test-integration && \
+	docker-compose down --remove-orphans
 
 up:
 	LOG_LEVEL=$(LOG_LEVEL) \

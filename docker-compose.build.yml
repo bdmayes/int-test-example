@@ -25,10 +25,3 @@ services:
     environment:
       - NODE_ENV=test
     command: npm run test
-
-  test-integration:
-    extends:
-      service: base
-    environment:
-      - NODE_ENV=test
-    command: npm run test:integration

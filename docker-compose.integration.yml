@@ -2,6 +2,7 @@ version: '3.7'
 
 services:
 
+  # Configure a container that pulls in our current code
   int-test-example:
     image: node:10-alpine
     depends_on:
@@ -21,6 +22,7 @@ services:
     networks:
       - default
 
+  # A target for running both unit and integration tests
   test-all:
     image: node:10-alpine
     depends_on:
@@ -33,6 +35,7 @@ services:
     working_dir: /opt/app
     command: npm run test:all
 
+  # A target for running only integration tests
   test-integration:
     image: node:10-alpine
     depends_on:
