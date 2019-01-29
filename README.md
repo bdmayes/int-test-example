@@ -15,11 +15,13 @@ The real heart of what we are trying to demonstrate here. The make target is as 
 
 ```
 test-integration:
-	LOG_LEVEL=off \
-	docker-compose -f docker-compose.integration.yml run --rm test-integration
+	COMPOSE_FILE=docker-compose.integration.yml \
+	LOG_LEVEL= \
+	docker-compose run --rm test-integration && \
+	docker-compose down --remove-orphans
 ```
 
-This instructs docker-compose to use the file named `docker-compose.integration.yml` instead of looking for the default `docker-compose.yml` file. Additionally, it runs the target `test-integration` with the `--rm` flag, which instructs the Docker engine to remove the running containers as soon as execution is complete.
+This instructs docker-compose to use the file named `docker-compose.integration.yml` instead of looking for the default `docker-compose.yml` file. Additionally, it runs the target `test-integration` with the `--rm` flag, which instructs the Docker engine to remove the running containers as soon as execution is complete. Oddly enough, this doesn't seem to be working so I added in the case of success it will then call `docker-compose down`. Inside of the Jenkinsfile, this is wrapped in a try/finally block, where we always execute the down command to be sure that we clean up any running containers.
 
 The `docker-compose.integration.yml` contains a few different services:
 - int-test-example: This container gets the current working directory copied inside of it. Basically, it copies the current version of the source code inside of it and then starts it up in development mode.
