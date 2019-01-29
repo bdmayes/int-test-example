@@ -4,7 +4,9 @@ module.exports = {
   REDIS_HOST: 'redis',
   REDIS_PORT: 6379,
   staging: {
+    // feel free to override/specify any staging settings here
   },
   production: {
+    // feel free to override/specify any prod settings here
   },
 };

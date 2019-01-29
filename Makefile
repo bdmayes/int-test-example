@@ -13,13 +13,17 @@ docker-login:
 down:
 	docker-compose down --remove-orphans
 
+down-test-ci:
+	COMPOSE_FILE=docker-compose.integration.yml \
+	docker-compose down --remove-orphans
+
 install:
 	COMPOSE_FILE=docker-compose.build.yml \
 	docker-compose run --rm install
 
 install-ci: docker-login install
 
-test-ci: docker-login test-integration
+test-ci: docker-login test-all
 
 test:
 	COMPOSE_FILE=docker-compose.build.yml \
